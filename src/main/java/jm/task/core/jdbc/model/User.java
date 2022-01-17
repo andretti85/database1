@@ -56,6 +56,10 @@ public class User {
         return age;
     }
 
+    public String toString() {
+        return name + lastName + age;
+    }
+
     public void setAge(Byte age) {
         this.age = age;
     }
