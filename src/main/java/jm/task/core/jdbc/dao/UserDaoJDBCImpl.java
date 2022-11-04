@@ -9,10 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-   // private Connection dbconnection;
-   /* public UserDaoJDBCImpl() {
-        dbconnection = Util.getMySQLConnection();
-    }*/
 
     public void createUsersTable() {
         String sql = "CREATE TABLE IF NOT EXISTS USERS (id BIGINT AUTO_INCREMENT, name VARCHAR(20), lastName VARCHAR(20), age TINYINT, PRIMARY KEY (id));";
@@ -74,7 +70,7 @@ public class UserDaoJDBCImpl implements UserDao {
         List<User> list = new ArrayList<>();
         String query = "SELECT * FROM USERS";
         try (Statement stmt = Util.getMySQLConnection().createStatement()) {
-          //  Statement stmt = dbconnection.createStatement();
+
 
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
@@ -97,7 +93,7 @@ public class UserDaoJDBCImpl implements UserDao {
         String sql = "DELETE FROM USERS";
 
         try (Connection dbconnection = Util.getMySQLConnection()) {
-            PreparedStatement pstmt = dbconnection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pstmt = dbconnection.prepareStatement(sql);
             pstmt.execute();
 
         } catch (Exception e) {

@@ -5,38 +5,30 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Util {
-    // реализуйте настройку соеденения с БД
-    // Connect to MySQL
 
-    private static Util instance;
+    private static Util util;
     private Util() {}
 
-    public static Util getInstance() {
-        if(instance == null) {		//если объект еще не создан
-            instance = new Util();	//создать новый объект
+    /*public synchronized Util getUtil() {
+        if (util == null) {
+            util = new Util();
         }
-        return instance;		// вернуть ранее созданный объект
-    }
+        return util;
+    }*/
     public static Connection getMySQLConnection() throws SQLException,
             ClassNotFoundException {
         String hostName = "localhost";
-
         String dbName = "alfa";
         String userName = "root";
         String password = "1234qwer";
-
-        return getMySQLConnection(hostName, dbName, userName, password);
-    }
-
-    public static Connection getMySQLConnection(String hostName, String dbName,
-                                                String userName, String password) throws SQLException,
-            ClassNotFoundException {
-        //Class.forName("com.mysql.cj.jdbc.Driver");
         String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
 
-        Connection conn = DriverManager.getConnection(connectionURL, userName,
+
+       Connection conn = DriverManager.getConnection(connectionURL, userName,
                 password);
+
         return conn;
+
     }
 
 }

@@ -25,13 +25,9 @@ public class Main {
         usi.saveUser(user4.getName(), user4.getLastName(), user4.getAge());
         System.out.println(user4.toString() + "was added");
 
-        List<User> l = usi.getAllUsers();
+        usi.getAllUsers().stream().forEach(System.out::println);
 
-        for (User u : l) {
-            System.out.println(u.toString() + "HHH");
-        }
-        System.out.println("HHH");
-       // usi.cleanUsersTable();
-      //  usi.dropUsersTable();
+        usi.cleanUsersTable();
+        usi.dropUsersTable();
     }
 }
